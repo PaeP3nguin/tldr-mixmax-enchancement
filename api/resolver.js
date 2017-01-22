@@ -24,7 +24,9 @@ module.exports = function (req, res) {
             <img src="https://localhost:8910/lil_logo.png" style="width: 100px;"></div>';
     html += '<div style="margin-left: 8px;"><h4 style="font-family: \'Avenir Next\', \'Segoe UI\', \'Calibri\', Arial, sans-serif; font-weight: 600; margin: 0 0 8px 0;">' + data.title + '</h4>';
     for (var i = 0, l = data.text.length; i < l; i++) {
-      if (data.text[i].trim().length > 0) {
+      if (i === l - 1) {
+        html += '<p style="font-family: \'Segoe UI\', \'Helvetica Neue\', Helvetica, \'Calibri\', Arial, sans-serif; font-size: small; margin-bottom: 0;">' + data.text[i] + '</p>';
+      } else {
         html += '<p style="font-family: \'Segoe UI\', \'Helvetica Neue\', Helvetica, \'Calibri\', Arial, sans-serif; font-size: small">' + data.text[i] + '</p>';
       }
     }

@@ -64,8 +64,10 @@ function setUrl() {
         datatype: 'json',
         success: function (data) {
             console.log(data);
-            summaryTitle = he.decode(data.sm_api_title);
+            summaryTitle = he.decode(data.sm_api_title).replace(/\\/g, '');
             summaryText = data.sm_api_content.split('[BREAK]');
+            // Remove empty element
+            summaryText.pop();
             $('.js-loading').hide();
             $('#js-show-summary').show();
             $('<h4>')
