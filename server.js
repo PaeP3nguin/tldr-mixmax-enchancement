@@ -24,6 +24,9 @@ app.get('/editor', function(req, res) {
 app.get('/editor.js', function(req, res) {
   res.sendFile(__dirname + '/editor.js');
 });
+app.get('/keys.js', function(req, res) {
+  res.sendFile(__dirname + '/keys.js');
+});
 
 // The in-email representation.
 app.post('/api/resolver', cors(corsOptions), require('./api/resolver'));
