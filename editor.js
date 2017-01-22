@@ -1,5 +1,9 @@
 /* jshint browser:true, jquery:true */
 
+var selectedUrl = null;
+var summaryTitle = null;
+var summaryText = null;
+
 // Restore existing data, if any.
 try {
     var data = JSON.parse(getURLParamByName('data'));
@@ -33,10 +37,6 @@ $('.js-url').on('keydown', function (e) {
     }
 });
 
-var selectedUrl = null;
-var summaryTitle = null;
-var summaryText = null;
-
 function setUrl() {
     selectedUrl = null;
     summaryTitle = null;
@@ -59,17 +59,17 @@ function setUrl() {
     $('#js-show-summary #js-summary-title').remove();
 
     $.ajax({
-        url: 'https://community-smmry.p.mashape.com/?SM_WITH_BREAK&SM_API_KEY=' + codes.smmry + '&SM_LENGTH=3&SM_URL=' + encodeURIComponent(url),
+        url: 'https://community-smmry.p.mashape.com/?SM_WITH_BREAK&SM_API_KEY=' + keys.smmry + '&SM_LENGTH=2&SM_URL=' + encodeURIComponent(url),
         type: 'GET',
         datatype: 'json',
         success: function (data) {
             console.log(data);
-            summaryTitle = data.sm_api_title;
+            summaryTitle = he.decode(data.sm_api_title);
             summaryText = data.sm_api_content.split('[BREAK]');
             $('.js-loading').hide();
             $('#js-show-summary').show();
             $('<h4>')
-                .attr("id", "jssummary-title")
+                .attr("id", "js-summary-title")
                 .text(summaryTitle)
                 .appendTo('#js-show-summary');
             for (var i = 0, l = summaryText.length; i < l; i++) {
@@ -86,7 +86,7 @@ function setUrl() {
             $('#js-show-summary').hide();
         },
         beforeSend: function (xhr) {
-            xhr.setRequestHeader("X-Mashape-Authorization", codes.mashape);
+            xhr.setRequestHeader("X-Mashape-Authorization", keys.mashape);
         }
     });
 }
@@ -101,7 +101,8 @@ function done() {
     Mixmax.done({
         url: selectedUrl,
         title: summaryTitle,
-        text: summaryText
+        text: summaryText,
+        width: 700
     });
 }
 

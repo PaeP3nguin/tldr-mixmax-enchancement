@@ -18,17 +18,30 @@ var corsOptions = {
 };
 
 // The editor interface.
-app.get('/editor', function(req, res) {
+app.get('/editor', function (req, res) {
   res.sendFile(__dirname + '/editor.html');
 });
-app.get('/editor.js', function(req, res) {
+app.get('/editor.js', function (req, res) {
   res.sendFile(__dirname + '/editor.js');
 });
-app.get('/keys.js', function(req, res) {
+app.get('/keys.js', function (req, res) {
   res.sendFile(__dirname + '/keys.js');
+});
+app.get('/he.js', function (req, res) {
+  res.sendFile(__dirname + '/he.js');
 });
 
 // The in-email representation.
 app.post('/api/resolver', cors(corsOptions), require('./api/resolver'));
 
-app.listen(process.env.PORT || 8910);
+var pem = require('pem');
+var https = require('https');
+pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
+  if (err) throw err;
+
+  https.createServer({
+    key: keys.serviceKey,
+    cert: keys.certificate
+  }, app).listen(process.env.PORT || 8910);
+});
+// app.listen(process.env.PORT || 8910);
