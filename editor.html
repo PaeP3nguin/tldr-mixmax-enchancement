@@ -1,0 +1,56 @@
+<html style="background-color: #0a0f14">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Mixmax &middot; TLDR</title>
+
+    <!-- Mixmax SDK -->
+    <script defer src="https://d1xa36cy0xt122.cloudfront.net/v1/Mixmax.js"></script>
+
+    <link rel="stylesheet" href="https://d1kj8zpr0wuyz7.cloudfront.net/ae29d5de2dac7f46e247381d9e1878a2b9bc7334/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700italic,700' rel='stylesheet'
+      type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+
+  <body data-current-theme="gmail">
+    <div class="bg-white  app-popup  app-webclip  flexbox  flexbox--column">
+      <header class="toolbar  text-reverse  text-medium  text-center  toolbar--app  gamma  ui-face">TLDR Web Summarizer</header>
+
+      <main class="flex-fill">
+        <div class="wrapper  ui-face  flex-fill">
+          <p class="text-medium  pt+++ pr+++ mr+++">Include a link of an article with a quick summary. <a href="http://smmry.com/about" target="_blank">Learn more</a>.</p>
+
+          <div class="mv+ ">
+            <div contenteditable="" class="widget-field  js-url" data-placeholder="Enter a URL and press enter">
+            </div>
+          </div>
+
+          <div class="js-error" style="display: none">
+            Error: URL could not be summarized. Please enter another URL.
+          </div>
+
+          <div class="js-loading" style="display: none">
+            Generating summary...
+          </div>
+
+          <div id="js-show-summary" class="mv+" style="display: none">
+            <p class="pv">Summarized article:</p>
+            <!-- Summary added here -->
+          </div>
+        </div>
+      </main>
+
+      <footer class="flexbox  toolbar  toolbar--bottom  pt  ph">
+        <div class="js-ok  btn  btn--primary-loud  zeta  mr" data-vivaldi-spatnav-clickable="1">Insert TLDR</div>
+        <div class="js-close  btn  zeta" data-vivaldi-spatnav-clickable="1">Cancel</div>
+      </footer>
+    </div>
+    <script src="keys.js"></script>
+    <script src="editor.js"></script>
+  </body>
+
+</html>
