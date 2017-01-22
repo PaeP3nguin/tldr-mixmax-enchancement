@@ -1,7 +1,5 @@
 /* jshint browser:true, jquery:true */
 
-var keys = require('./keys');
-
 // Restore existing data, if any.
 try {
     var data = JSON.parse(getURLParamByName('data'));
